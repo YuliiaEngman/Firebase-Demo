@@ -22,15 +22,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        displayNameTextField.delegate = self
+        
+      updateUI()
+    }
+    
+    private func updateUI() {
         guard let user = Auth.auth().currentUser else {
-            return
-        }
-        emailLabel.text = user.email
-        displayNameTextField.text = user.displayName
-        //user.displayName
-        //user.email
-        //user.phoneNumber
-        //user.photoURL
+                  return
+              }
+              emailLabel.text = user.email
+              displayNameTextField.text = user.displayName
+              //user.displayName
+              //user.email
+              //user.phoneNumber
+              //user.photoURL
     }
     
     @IBAction func updateProfileButtonPressed(_ sender: UIButton) {
@@ -54,5 +60,12 @@ class ProfileViewController: UIViewController {
                 print("profile successfully updated")
             }
         })
+    }
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
