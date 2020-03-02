@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		0F59C01024096E4D00CEEAE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */; };
 		0F59C0132409757200CEEAE6 /* AuthentificationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */; };
+		0F68AC64240D5E060074B3E1 /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F68AC63240D5E060074B3E1 /* MainView.storyboard */; };
+		0F68AC66240D5F130074B3E1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC65240D5F130074B3E1 /* MainTabBarController.swift */; };
+		0F68AC68240D5F3D0074B3E1 /* ItemFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC67240D5F3D0074B3E1 /* ItemFeedViewController.swift */; };
+		0F68AC6A240D5F4F0074B3E1 /* SellItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC69240D5F4F0074B3E1 /* SellItemViewController.swift */; };
+		0F68AC6C240D5F640074B3E1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC6B240D5F640074B3E1 /* ProfileViewController.swift */; };
+		0F68AC6E240D5F740074B3E1 /* CreateItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC6D240D5F740074B3E1 /* CreateItemViewController.swift */; };
+		0F68AC70240D5F9E0074B3E1 /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC6F240D5F9E0074B3E1 /* UIViewController+Navigation.swift */; };
+		0F68AC72240D5FE80074B3E1 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC71240D5FE80074B3E1 /* UIViewController+Alerts.swift */; };
 		57845ACD24092D4300F35651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57845ACC24092D4300F35651 /* AppDelegate.swift */; };
 		57845ACF24092D4300F35651 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57845ACE24092D4300F35651 /* SceneDelegate.swift */; };
 		57845AD124092D4300F35651 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57845AD024092D4300F35651 /* LoginViewController.swift */; };
@@ -35,6 +43,14 @@
 /* Begin PBXFileReference section */
 		0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationSession.swift; sourceTree = "<group>"; };
+		0F68AC63240D5E060074B3E1 /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
+		0F68AC65240D5F130074B3E1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		0F68AC67240D5F3D0074B3E1 /* ItemFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFeedViewController.swift; sourceTree = "<group>"; };
+		0F68AC69240D5F4F0074B3E1 /* SellItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellItemViewController.swift; sourceTree = "<group>"; };
+		0F68AC6B240D5F640074B3E1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0F68AC6D240D5F740074B3E1 /* CreateItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemViewController.swift; sourceTree = "<group>"; };
+		0F68AC6F240D5F9E0074B3E1 /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
+		0F68AC71240D5FE80074B3E1 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		17662523252D6EC19305D366 /* Pods_Firebase_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7BDC2C5150E7E031D3BA38 /* Pods-Firebase-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase-Demo.release.xcconfig"; path = "Target Support Files/Pods-Firebase-Demo/Pods-Firebase-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		57845AC924092D4300F35651 /* Firebase-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +175,13 @@
 			isa = PBXGroup;
 			children = (
 				57845AD024092D4300F35651 /* LoginViewController.swift */,
+				0F68AC65240D5F130074B3E1 /* MainTabBarController.swift */,
+				0F68AC67240D5F3D0074B3E1 /* ItemFeedViewController.swift */,
+				0F68AC69240D5F4F0074B3E1 /* SellItemViewController.swift */,
+				0F68AC6B240D5F640074B3E1 /* ProfileViewController.swift */,
+				0F68AC6D240D5F740074B3E1 /* CreateItemViewController.swift */,
+				0F68AC6F240D5F9E0074B3E1 /* UIViewController+Navigation.swift */,
+				0F68AC71240D5FE80074B3E1 /* UIViewController+Alerts.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,6 +191,7 @@
 			children = (
 				57845AD724092D4400F35651 /* LaunchScreen.storyboard */,
 				57845AEE24092D5D00F35651 /* LoginView.storyboard */,
+				0F68AC63240D5E060074B3E1 /* MainView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -269,6 +293,7 @@
 			files = (
 				57845AD924092D4400F35651 /* LaunchScreen.storyboard in Resources */,
 				0F59C01024096E4D00CEEAE6 /* GoogleService-Info.plist in Resources */,
+				0F68AC64240D5E060074B3E1 /* MainView.storyboard in Resources */,
 				57845AD624092D4400F35651 /* Assets.xcassets in Resources */,
 				57845AEF24092D5D00F35651 /* LoginView.storyboard in Resources */,
 			);
@@ -352,10 +377,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F68AC70240D5F9E0074B3E1 /* UIViewController+Navigation.swift in Sources */,
 				57845AD124092D4300F35651 /* LoginViewController.swift in Sources */,
+				0F68AC68240D5F3D0074B3E1 /* ItemFeedViewController.swift in Sources */,
+				0F68AC6C240D5F640074B3E1 /* ProfileViewController.swift in Sources */,
 				57845ACD24092D4300F35651 /* AppDelegate.swift in Sources */,
 				57845AF124092DBB00F35651 /* GradientView.swift in Sources */,
+				0F68AC6E240D5F740074B3E1 /* CreateItemViewController.swift in Sources */,
+				0F68AC6A240D5F4F0074B3E1 /* SellItemViewController.swift in Sources */,
+				0F68AC66240D5F130074B3E1 /* MainTabBarController.swift in Sources */,
 				0F59C0132409757200CEEAE6 /* AuthentificationSession.swift in Sources */,
+				0F68AC72240D5FE80074B3E1 /* UIViewController+Alerts.swift in Sources */,
 				57845AF324092DDC00F35651 /* DesignableView.swift in Sources */,
 				57845ACF24092D4300F35651 /* SceneDelegate.swift in Sources */,
 			);
