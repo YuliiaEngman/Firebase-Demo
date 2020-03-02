@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F364AEF240D757900F15393 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F364AEE240D757900F15393 /* CategoryCell.swift */; };
 		0F59C01024096E4D00CEEAE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */; };
 		0F59C0132409757200CEEAE6 /* AuthentificationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */; };
 		0F68AC64240D5E060074B3E1 /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F68AC63240D5E060074B3E1 /* MainView.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F364AEE240D757900F15393 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationSession.swift; sourceTree = "<group>"; };
 		0F68AC63240D5E060074B3E1 /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				57845AF024092DBB00F35651 /* GradientView.swift */,
 				57845AF224092DDC00F35651 /* DesignableView.swift */,
+				0F364AEE240D757900F15393 /* CategoryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				0F68AC70240D5F9E0074B3E1 /* UIViewController+Navigation.swift in Sources */,
 				57845AD124092D4300F35651 /* LoginViewController.swift in Sources */,
 				0F68AC68240D5F3D0074B3E1 /* ItemFeedViewController.swift in Sources */,
+				0F364AEF240D757900F15393 /* CategoryCell.swift in Sources */,
 				0F68AC6C240D5F640074B3E1 /* ProfileViewController.swift in Sources */,
 				57845ACD24092D4300F35651 /* AppDelegate.swift in Sources */,
 				57845AF124092DBB00F35651 /* GradientView.swift in Sources */,

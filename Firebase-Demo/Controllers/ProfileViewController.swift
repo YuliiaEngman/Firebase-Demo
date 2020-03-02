@@ -52,12 +52,14 @@ class ProfileViewController: UIViewController {
         
         request?.displayName = displayName
         
-        request?.commitChanges(completion: {(error) in
+        request?.commitChanges(completion: { [unowned self] (error) in
             if let error = error {
                 //TODO: show alert
-                print("CommitCjanges error: \(error)")
+                //print("CommitCjanges error: \(error)")
+                self.showAlert(title: "Profile Change", message: "Error changing profile: \(error)")
             } else {
-                print("profile successfully updated")
+                //print("profile successfully updated")
+                self.showAlert(title: "Profile Updated", message: "Profile successfully updated")
             }
         })
     }
