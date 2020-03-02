@@ -56,10 +56,14 @@ class LoginViewController: UIViewController {
                         "\(error.localizedDescription)"
                         self?.errorLabel.textColor = .systemRed
                     }
-                case .success(let authDataResult):
+               // case .success(let authDataResult):
+                    case .success:
                     DispatchQueue.main.async {
-                        self?.errorLabel.text = "Welcome back user with email: \(authDataResult.user.email ?? "")"
-                        self?.errorLabel.textColor = .systemGreen
+//                        self?.errorLabel.text = "Welcome back user with email: \(authDataResult.user.email ?? "")"
+//                        self?.errorLabel.textColor = .systemGreen
+                        
+                        //TODO: navigate to the main view
+                        self?.navigateToMainView()
                     }
                 }
             }
@@ -73,15 +77,24 @@ class LoginViewController: UIViewController {
                         "\(error.localizedDescription)"
                         self?.errorLabel.textColor = .systemRed
                     }
-                case .success(let authDataResult):
+                //case .success(let authDataResult):
+                    case .success:
+
                     DispatchQueue.main.async {
-                        self?.errorLabel.text = "Hope ypu enjoy our app experience. Email used: \(authDataResult.user.email ?? "")"
-                        self?.errorLabel.textColor = .systemGreen
+//                        self?.errorLabel.text = "Hope ypu enjoy our app experience. Email used: \(authDataResult.user.email ?? "")"
+//                        self?.errorLabel.textColor = .systemGreen
+
+                        //TODO: navigate to the main view
+                        self?.navigateToMainView()
                     }
                     
                 }
             }
         }
+    }
+    
+    private func navigateToMainView() {
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerId: "MainTabBarController")
     }
     
     private func clearErrorLabel() {
