@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0F364AEF240D757900F15393 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F364AEE240D757900F15393 /* CategoryCell.swift */; };
+		0F364AF1240D773100F15393 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F364AF0240D773100F15393 /* CategoryModel.swift */; };
+		0F364AF4240D7B9B00F15393 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F364AF3240D7B9B00F15393 /* ItemModel.swift */; };
+		0F364AF6240D7E7500F15393 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F364AF5240D7E7500F15393 /* DatabaseService.swift */; };
 		0F59C01024096E4D00CEEAE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */; };
 		0F59C0132409757200CEEAE6 /* AuthentificationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */; };
 		0F68AC64240D5E060074B3E1 /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F68AC63240D5E060074B3E1 /* MainView.storyboard */; };
@@ -43,6 +46,9 @@
 
 /* Begin PBXFileReference section */
 		0F364AEE240D757900F15393 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		0F364AF0240D773100F15393 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		0F364AF3240D7B9B00F15393 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		0F364AF5240D7E7500F15393 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationSession.swift; sourceTree = "<group>"; };
 		0F68AC63240D5E060074B3E1 /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
@@ -94,10 +100,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F364AF2240D776400F15393 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F364AF0240D773100F15393 /* CategoryModel.swift */,
+				0F364AF3240D7B9B00F15393 /* ItemModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		0F59C0112409754900CEEAE6 /* FirebaseServices */ = {
 			isa = PBXGroup;
 			children = (
 				0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */,
+				0F364AF5240D7E7500F15393 /* DatabaseService.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -114,6 +130,7 @@
 		57845AC024092D4300F35651 = {
 			isa = PBXGroup;
 			children = (
+				0F364AF2240D776400F15393 /* Models */,
 				0F59C0112409754900CEEAE6 /* FirebaseServices */,
 				57845ACB24092D4300F35651 /* Firebase-Demo */,
 				57845AE224092D4400F35651 /* Firebase-DemoTests */,
@@ -380,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F364AF6240D7E7500F15393 /* DatabaseService.swift in Sources */,
 				0F68AC70240D5F9E0074B3E1 /* UIViewController+Navigation.swift in Sources */,
 				57845AD124092D4300F35651 /* LoginViewController.swift in Sources */,
 				0F68AC68240D5F3D0074B3E1 /* ItemFeedViewController.swift in Sources */,
@@ -390,9 +408,11 @@
 				0F68AC6E240D5F740074B3E1 /* CreateItemViewController.swift in Sources */,
 				0F68AC6A240D5F4F0074B3E1 /* SellItemViewController.swift in Sources */,
 				0F68AC66240D5F130074B3E1 /* MainTabBarController.swift in Sources */,
+				0F364AF4240D7B9B00F15393 /* ItemModel.swift in Sources */,
 				0F59C0132409757200CEEAE6 /* AuthentificationSession.swift in Sources */,
 				0F68AC72240D5FE80074B3E1 /* UIViewController+Alerts.swift in Sources */,
 				57845AF324092DDC00F35651 /* DesignableView.swift in Sources */,
+				0F364AF1240D773100F15393 /* CategoryModel.swift in Sources */,
 				57845ACF24092D4300F35651 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
