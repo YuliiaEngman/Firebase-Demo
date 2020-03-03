@@ -37,8 +37,9 @@ class ItemFeedViewController: UIViewController {
                     self?.showAlert(title: "try again later", message: "\(error.localizedDescription)")
                 }
             } else if let snapshot = snapshot {
-                print("there are \(snapshot.documents.count) item for sale")
-                
+                //print("there are \(snapshot.documents.count) item for sale")
+                let items = snapshot.documents.map { Item($0.data())}
+                self?.items = items
             }
         })
     }
@@ -51,11 +52,15 @@ class ItemFeedViewController: UIViewController {
 
 extension ItemFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        let item = items[indexPath.row]
+        cell.textLabel?.text = item.itemName
+        let price = String(format: "%.2f", item.price)
+        cell.detailTextLabel?.text = "username \(item.sellerName) price: $\(price)"
         return cell
     }
 }
