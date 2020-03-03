@@ -15,8 +15,8 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     public func configureCell(for category: Category) {
-        let colorImage = category.image.withTintColor(UIColor.generateRandomColor(), renderingMode: .alwaysOriginal)
-        categoryImageView.image = category.image
+        let colourImage = category.image.withTintColor(UIColor.generateRandomColor(), renderingMode: .alwaysOriginal)
+        categoryImageView.image = colourImage
             categoryNameLabel.text = category.name
         
     }

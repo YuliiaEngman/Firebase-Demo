@@ -53,13 +53,17 @@ class CreateItemViewController: UIViewController {
         dbService.createItem(itemName: itemName, price: price, category: category, displayName: displayName) {[weak self] (result) in
             switch result {
             case .failure(let error):
-                self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                     self?.showAlert(title: "Error creating item", message: "Sorry something went wrong: \(error.localizedDescription)")
+                }
             case .success:
-                self?.showAlert(title: nil, message: "Successfully listed your item")
+                DispatchQueue.main.async {
+                    self?.showAlert(title: nil, message: "Successfully listed your item")
+                }
             }
         }
         
-        dismiss(animated: true)
+       // dismiss(animated: true)
     }
     
     
