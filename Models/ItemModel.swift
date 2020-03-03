@@ -14,5 +14,6 @@ struct Item {
     let itemId: String
     let listedDate: Date
     let sellerName: String
+    let sellerID: String // it will be our ID
     let categoryName: String
 }
