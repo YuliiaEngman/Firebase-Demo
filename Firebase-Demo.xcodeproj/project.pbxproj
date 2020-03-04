@@ -13,6 +13,8 @@
 		0F364AF6240D7E7500F15393 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F364AF5240D7E7500F15393 /* DatabaseService.swift */; };
 		0F59881F240FFDF7004D5761 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F59881E240FFDF7004D5761 /* ItemCell.xib */; };
 		0F598821240FFE1A004D5761 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F598820240FFE1A004D5761 /* ItemCell.swift */; };
+		0F59882424100B22004D5761 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F59882324100B22004D5761 /* UIImage+Extensions.swift */; };
+		0F59882624100DDE004D5761 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F59882524100DDE004D5761 /* StorageService.swift */; };
 		0F59C01024096E4D00CEEAE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */; };
 		0F59C0132409757200CEEAE6 /* AuthentificationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */; };
 		0F68AC64240D5E060074B3E1 /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F68AC63240D5E060074B3E1 /* MainView.storyboard */; };
@@ -53,6 +55,8 @@
 		0F364AF5240D7E7500F15393 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		0F59881E240FFDF7004D5761 /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 		0F598820240FFE1A004D5761 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		0F59882324100B22004D5761 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		0F59882524100DDE004D5761 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		0F59C00F24096E4D00CEEAE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationSession.swift; sourceTree = "<group>"; };
 		0F68AC63240D5E060074B3E1 /* MainView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainView.storyboard; sourceTree = "<group>"; };
@@ -113,11 +117,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		0F59882224100AE9004D5761 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0F59882324100B22004D5761 /* UIImage+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0F59C0112409754900CEEAE6 /* FirebaseServices */ = {
 			isa = PBXGroup;
 			children = (
 				0F59C0122409757200CEEAE6 /* AuthentificationSession.swift */,
 				0F364AF5240D7E7500F15393 /* DatabaseService.swift */,
+				0F59882524100DDE004D5761 /* StorageService.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -134,6 +147,7 @@
 		57845AC024092D4300F35651 = {
 			isa = PBXGroup;
 			children = (
+				0F59882224100AE9004D5761 /* Extensions */,
 				0F364AF2240D776400F15393 /* Models */,
 				0F59C0112409754900CEEAE6 /* FirebaseServices */,
 				57845ACB24092D4300F35651 /* Firebase-Demo */,
@@ -409,10 +423,12 @@
 				0F598821240FFE1A004D5761 /* ItemCell.swift in Sources */,
 				57845AD124092D4300F35651 /* LoginViewController.swift in Sources */,
 				0F68AC68240D5F3D0074B3E1 /* ItemFeedViewController.swift in Sources */,
+				0F59882624100DDE004D5761 /* StorageService.swift in Sources */,
 				0F364AEF240D757900F15393 /* CategoryCell.swift in Sources */,
 				0F68AC6C240D5F640074B3E1 /* ProfileViewController.swift in Sources */,
 				57845ACD24092D4300F35651 /* AppDelegate.swift in Sources */,
 				57845AF124092DBB00F35651 /* GradientView.swift in Sources */,
+				0F59882424100B22004D5761 /* UIImage+Extensions.swift in Sources */,
 				0F68AC6E240D5F740074B3E1 /* CreateItemViewController.swift in Sources */,
 				0F68AC6A240D5F4F0074B3E1 /* SellItemViewController.swift in Sources */,
 				0F68AC66240D5F130074B3E1 /* MainTabBarController.swift in Sources */,
