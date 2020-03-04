@@ -63,6 +63,20 @@ class ProfileViewController: UIViewController {
             }
         })
     }
+    
+    @IBAction func editProfilePhotoButtonPressed(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Choose Photot Option", message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: nil)
+        let phototLibararyAction = UIAlertAction(title: "Photo Libarary", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alertController.addAction(cameraAction)
+        }
+        alertController.addAction(phototLibararyAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
 }
 
 extension ProfileViewController: UITextFieldDelegate {
