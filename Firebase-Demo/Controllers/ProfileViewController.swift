@@ -30,6 +30,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    private let storageservice = StorageService()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +57,23 @@ class ProfileViewController: UIViewController {
         //change the user's display name
         
         guard let displayName = displayNameTextField.text,
-            !displayName.isEmpty else {
+            !displayName.isEmpty, let selectedImage = selectedImage else {
                 print("missing field")
                 return
+        }
+        
+        guard let user = Auth.auth().currentUser else { return }
+        //resize image before uploading to Firebase
+        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: profileImageView.bounds)
+        
+        print("original image size: \(selectedImage.size)")
+        print("resized image size: \(resizedImage)")
+        
+        //TODO: call storageService.upload
+        //need to update to user userId ot itemId
+        storageservice.uploadPhoto(userId: user.uid, image: resizedImage) {(result) in
+  // code here to add the photoURL to the user's photoURL
+       //     property then commit changes
         }
         
         let request = Auth.auth().currentUser?.createProfileChangeRequest()
