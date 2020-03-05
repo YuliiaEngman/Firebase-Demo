@@ -98,14 +98,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
                             </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-6N-4EM">
+                                <rect key="frame" x="0.0" y="217" width="414" height="411.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="H9M-6N-4EM" secondAttribute="height" multiplier="1:1" id="KW6-Af-PZS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="H9M-6N-4EM" firstAttribute="trailing" secondItem="MYo-Ad-mID" secondAttribute="trailing" id="00x-Bj-8My"/>
+                            <constraint firstItem="H9M-6N-4EM" firstAttribute="top" secondItem="sn7-9c-N47" secondAttribute="bottom" constant="20" id="HWx-AT-YEN"/>
                             <constraint firstItem="sn7-9c-N47" firstAttribute="top" secondItem="EZd-PY-sVX" secondAttribute="bottom" constant="20" id="ShG-XG-THD"/>
                             <constraint firstItem="MYo-Ad-mID" firstAttribute="trailing" secondItem="EZd-PY-sVX" secondAttribute="trailing" constant="20" id="bXT-w4-f47"/>
                             <constraint firstItem="EZd-PY-sVX" firstAttribute="top" secondItem="MYo-Ad-mID" secondAttribute="top" constant="20" id="bti-hw-X1e"/>
                             <constraint firstItem="MYo-Ad-mID" firstAttribute="trailing" secondItem="sn7-9c-N47" secondAttribute="trailing" constant="20" id="g8P-Yz-T3r"/>
                             <constraint firstItem="sn7-9c-N47" firstAttribute="leading" secondItem="MYo-Ad-mID" secondAttribute="leading" constant="20" id="kLU-La-KwX"/>
+                            <constraint firstItem="H9M-6N-4EM" firstAttribute="leading" secondItem="MYo-Ad-mID" secondAttribute="leading" id="nOl-nG-vTu"/>
                             <constraint firstItem="EZd-PY-sVX" firstAttribute="leading" secondItem="MYo-Ad-mID" secondAttribute="leading" constant="20" id="x5C-dl-KuF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MYo-Ad-mID"/>
@@ -118,6 +127,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="itemImageView" destination="H9M-6N-4EM" id="5Vp-6m-HMS"/>
                         <outlet property="itemNameTextField" destination="EZd-PY-sVX" id="9pg-ns-Cf1"/>
                         <outlet property="itemPriceTextField" destination="sn7-9c-N47" id="Vhb-Gj-xgz"/>
                     </connections>
@@ -176,6 +186,13 @@
                                     <action selector="editProfilePhotoButtonPressed:" destination="XRY-9H-wga" eventType="touchUpInside" id="kqM-He-paA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-z6-Qbu">
+                                <rect key="frame" x="177" y="493" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButtonPressed:" destination="XRY-9H-wga" eventType="touchUpInside" id="BHf-18-22r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -184,8 +201,10 @@
                             <constraint firstItem="rIC-YE-FcZ" firstAttribute="top" secondItem="ceB-iF-4qk" secondAttribute="bottom" constant="20" id="SNF-b6-zBo"/>
                             <constraint firstItem="M0u-4r-Eyb" firstAttribute="top" secondItem="rIC-YE-FcZ" secondAttribute="bottom" constant="20" id="TBY-uk-YBn"/>
                             <constraint firstItem="e0o-Do-MOd" firstAttribute="trailing" secondItem="rIC-YE-FcZ" secondAttribute="trailing" constant="20" id="V02-Ee-6qe"/>
+                            <constraint firstItem="jOa-z6-Qbu" firstAttribute="top" secondItem="y7k-nh-iUz" secondAttribute="bottom" constant="30" id="YeN-Om-lzJ"/>
                             <constraint firstItem="rIC-YE-FcZ" firstAttribute="leading" secondItem="e0o-Do-MOd" secondAttribute="leading" constant="20" id="ewF-75-cvf"/>
                             <constraint firstItem="y7k-nh-iUz" firstAttribute="centerX" secondItem="Kad-hD-IGU" secondAttribute="centerX" id="lIB-wc-3KA"/>
+                            <constraint firstItem="jOa-z6-Qbu" firstAttribute="centerX" secondItem="Kad-hD-IGU" secondAttribute="centerX" id="nNy-5V-JLg"/>
                             <constraint firstItem="y7k-nh-iUz" firstAttribute="centerY" secondItem="Kad-hD-IGU" secondAttribute="centerY" id="tn4-Ss-JrD"/>
                             <constraint firstItem="ceB-iF-4qk" firstAttribute="centerX" secondItem="Kad-hD-IGU" secondAttribute="centerX" id="vhx-rH-I10"/>
                             <constraint firstItem="ceB-iF-4qk" firstAttribute="top" secondItem="e0o-Do-MOd" secondAttribute="top" constant="40" id="vqv-Rx-WfT"/>
@@ -277,5 +296,6 @@
         <image name="guitars" catalog="system" width="64" height="52"/>
         <image name="pencil.circle.fill" catalog="system" width="64" height="60"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
+        <image name="photo" catalog="system" width="64" height="46"/>
     </resources>
 </document>
