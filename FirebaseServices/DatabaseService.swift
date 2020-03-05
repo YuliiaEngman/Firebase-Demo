@@ -20,7 +20,7 @@ class DatabaseService {
     //db represent a top collection
     //eacj project will have its own database
     
-    public func createItem(itemName: String, price: Double, category: Category, displayName: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func createItem(itemName: String, price: Double, category: Category, displayName: String, completion: @escaping (Result<String, Error>) -> ()) {
         //user if optional and we need to use guard for it
         
         guard let user = Auth.auth().currentUser else { return }
@@ -51,7 +51,7 @@ class DatabaseService {
                 completion(.failure(error))
             } else {
                // print("item was created \(documentRef.documentID)")
-                completion(.success(true))
+                completion(.success(documentRef.documentID))
             }
         }
     }
