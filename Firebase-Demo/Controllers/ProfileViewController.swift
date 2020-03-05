@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Kingfisher
 
 class ProfileViewController: UIViewController {
     
@@ -38,19 +39,20 @@ class ProfileViewController: UIViewController {
         
         displayNameTextField.delegate = self
         
-      updateUI()
+        updateUI()
     }
     
     private func updateUI() {
         guard let user = Auth.auth().currentUser else {
-                  return
-              }
-              emailLabel.text = user.email
-              displayNameTextField.text = user.displayName
-              //user.displayName
-              //user.email
-              //user.phoneNumber
-              //user.photoURL
+            return
+        }
+        emailLabel.text = user.email
+        displayNameTextField.text = user.displayName
+        profileImageView.kf.setImage(with: user.photoURL)
+        //user.displayName
+        //user.email
+        //user.phoneNumber
+        //user.photoURL
     }
     
     @IBAction func updateProfileButtonPressed(_ sender: UIButton) {
@@ -71,25 +73,35 @@ class ProfileViewController: UIViewController {
         
         //TODO: call storageService.upload
         //need to update to user userId ot itemId
-        storageservice.uploadPhoto(userId: user.uid, image: resizedImage) {(result) in
-  // code here to add the photoURL to the user's photoURL
-       //     property then commit changes
-        }
-        
-        let request = Auth.auth().currentUser?.createProfileChangeRequest()
-        
-        request?.displayName = displayName
-        
-        request?.commitChanges(completion: { [unowned self] (error) in
-            if let error = error {
-                //TODO: show alert
-                //print("CommitCjanges error: \(error)")
-                self.showAlert(title: "Profile Change", message: "Error changing profile: \(error)")
-            } else {
-                //print("profile successfully updated")
-                self.showAlert(title: "Profile Updated", message: "Profile successfully updated")
+        storageservice.uploadPhoto(userId: user.uid, image: resizedImage) { [weak self] (result) in
+            // code here to add the photoURL to the user's photoURL
+            //     property then commit changes
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error uploading photo", message: "\(error.localizedDescription)")
+                }
+            case .success(let url):
+                let request = Auth.auth().currentUser?.createProfileChangeRequest()
+                request?.displayName = displayName
+                request?.photoURL = url
+                request?.commitChanges(completion: { [unowned self] (error) in
+                    if let error = error {
+                        //TODO: show alert
+                        //print("CommitCjanges error: \(error)")
+                        DispatchQueue.main.async {
+                            self?.showAlert(title: "Error updating profile", message: "Error changing profile: \(error.localizedDescription)")
+                            
+                        }
+                    } else {
+                        //print("profile successfully updated")
+                        DispatchQueue.main.async {
+                            self?.showAlert(title: "Profile Updated", message: "Profile successfully updated")
+                        }
+                    }
+                })
             }
-        })
+        }
     }
     
     @IBAction func editProfilePhotoButtonPressed(_ sender: UIButton) {
@@ -128,7 +140,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             return
         }
         selectedImage = image
-          dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 }
