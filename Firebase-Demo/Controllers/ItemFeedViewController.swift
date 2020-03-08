@@ -50,7 +50,7 @@ class ItemFeedViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        listener?.remove() //no longer are we listening for cjanges from Firebase
+        listener?.remove() //no longer are we listening for changes from Firebase
     }
 }
 

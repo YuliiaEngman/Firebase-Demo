@@ -105,7 +105,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func editProfilePhotoButtonPressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Choose Photot Option", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default)
         { [weak self] alertAction in
             self?.imagePickerController.sourceType = .camera
