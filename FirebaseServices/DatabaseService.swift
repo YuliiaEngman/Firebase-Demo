@@ -13,7 +13,7 @@ import FirebaseAuth
 class DatabaseService {
     
     static let itemsCollection = "items" // to access static let we use class name + let itself
-    static let usersCollection = "users"
+    static let userCollection = "users"
     static let commentsCollection = "comments" //sub-collection on an item document
     
     // review - firebase firestore hierarchy works like this
@@ -69,7 +69,7 @@ class DatabaseService {
         }
         
         //in below code we could add a display name if we created that
-        db.collection(DatabaseService.usersCollection).document(authDataResult.user.uid).setData(["email" : email,
+        db.collection(DatabaseService.userCollection).document(authDataResult.user.uid).setData(["email" : email,
                                                                                                   "createdDate" : Timestamp(date: Date()),
                                                                                                   "userID": authDataResult.user.uid]) { (error) in
                                                                                                     
@@ -84,6 +84,19 @@ class DatabaseService {
     func updateDatabaseUser(displayName: String, photoURL: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         db.collection(DatabaseService.userCollection).document(user.uid).updateData(["photoURL": photoURL, "displayName": displayName]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        
+        
+        db.collection(DatabaseService.itemsCollection).document(item.itemId).delete { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

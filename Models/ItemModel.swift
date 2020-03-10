@@ -23,7 +23,7 @@ extension Item {
     init(_ dictionary: [String: Any]) {
         self.itemName = dictionary["itemName"] as? String ?? "no item name"
         self.price = dictionary["price"] as? Double ?? 0.0
-        self.itemId = dictionary["itemId"] as? String ?? "no item id"
+        self.itemId = dictionary["itemID"] as? String ?? "no item id"
         self.listedDate = dictionary["listedDate"] as? Date ?? Date()
         self.sellerName = dictionary["sellerName"] as? String ?? "no seller name"
         self.sellerID = dictionary["sellerID"] as? String ?? "no sellet id"
