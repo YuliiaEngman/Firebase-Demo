@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
     }
     
     private let storageservice = StorageService()
+    private let databaseService = DatabaseService()
     
     
     override func viewDidLoad() {
@@ -82,6 +83,10 @@ class ProfileViewController: UIViewController {
                     self?.showAlert(title: "Error uploading photo", message: "\(error.localizedDescription)")
                 }
             case .success(let url):
+                
+                self?.updateDatabaseUser(displayName: displayName, photoURL: url.absoluteString)
+                
+                //TODO: refactor to own function
                 let request = Auth.auth().currentUser?.createProfileChangeRequest()
                 request?.displayName = displayName
                 request?.photoURL = url
@@ -103,6 +108,20 @@ class ProfileViewController: UIViewController {
             }
         }
     }
+    
+    private func updateDatabaseUser(displayName: String, photoURL: String) {
+        databaseService.updateDatabaseUser(displayName: displayName, photoURL: photoURL) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print("failed to update db user: \(error.localizedDescription)")
+            case .success:
+                print("successfully updated db user")
+            }
+        }
+        
+    }
+    
+    
     
     @IBAction func editProfilePhotoButtonPressed(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)

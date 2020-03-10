@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 enum AccountState {
     case existingUser
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController {
     private var accountState: AccountState = .existingUser
     
     private var authSession = AuthentificationSession()
+    private var databaseService = DatabaseService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,16 +80,32 @@ class LoginViewController: UIViewController {
                         self?.errorLabel.textColor = .systemRed
                     }
                 //case .success(let authDataResult):
-                    case .success:
+                    case .success(let authDataResult):
 
-                    DispatchQueue.main.async {
-//                        self?.errorLabel.text = "Hope ypu enjoy our app experience. Email used: \(authDataResult.user.email ?? "")"
-//                        self?.errorLabel.textColor = .systemGreen
-
-                        //TODO: navigate to the main view
-                        self?.navigateToMainView()
+                    //TODO: create a database user
+                        //create a database user only from  туц фгерутешсфеув фссщгте
+                        self?.createDatabaseUser(authDataResult: authDataResult)
+//                    DispatchQueue.main.async {
+////                        self?.errorLabel.text = "Hope ypu enjoy our app experience. Email used: \(authDataResult.user.email ?? "")"
+////                        self?.errorLabel.textColor = .systemGreen
+//
+//                        //TODO: navigate to the main view
+//                        self?.navigateToMainView()
                     }
-                    
+                }
+            }
+        }
+    //create a database user 1
+    private func createDatabaseUser(authDataResult: AuthDataResult) {
+        databaseService.createDatabaseUser(authDataResult: authDataResult) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Account error", message: error.localizedDescription)
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.navigateToMainView()
                 }
             }
         }
