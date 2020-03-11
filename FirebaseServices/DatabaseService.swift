@@ -103,7 +103,10 @@ class DatabaseService {
     }
     
     public func postComment(item: Item, comment: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        guard let user = Auth.auth().currentUser, let displayName = user.displayName else { return }
+        guard let user = Auth.auth().currentUser, let displayName = user.displayName else {
+            print("missing user data")
+            return
+        }
         //creating empty document I want to write
         //getting a document
         let docRef = db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document()

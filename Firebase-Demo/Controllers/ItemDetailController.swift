@@ -30,6 +30,20 @@ class ItemDetailController: UIViewController {
     
     private var listener: ListenerRegistration?
     
+    private var comments = [Comment]() {
+        didSet { // property observer
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, h:mm a" //EEEE - Full day (Wednesday)
+        return formatter
+    }()
+    
     init?(coder: NSCoder, item: Item) {
         self.item = item
         super.init(coder: coder)
@@ -50,6 +64,8 @@ class ItemDetailController: UIViewController {
         commentTextField.delegate = self
         
         view.addGestureRecognizer(tapGesture)
+        
+        tableView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,7 +79,11 @@ class ItemDetailController: UIViewController {
                     self?.showAlert(title: "Try again", message: error.localizedDescription)
                 }
             } else if let snapshot = snapshot {
-                
+                //create comments using dictionary initialixer from the Comment model
+//                self?.comments = snapshot.documents.map { Comment($0.data())}
+                let comments = snapshot.documents.map { Comment($0.data())}
+                //sort by date
+                self?.comments = comments.sorted {$0.commentDate.dateValue() > $1.commentDate.dateValue()}
             }
         })
     }
@@ -71,6 +91,7 @@ class ItemDetailController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         unregisterKeyboardNotifications()
+        listener?.remove()
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
@@ -140,4 +161,21 @@ extension ItemDetailController: UITextFieldDelegate {
         dismissKeyboard()
         return true
     }
+}
+
+extension ItemDetailController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
+        let comment = comments[indexPath.row]
+        let dateString = dateFormatter.string(from: comment.commentDate.dateValue())
+        cell.textLabel?.text = comment.text
+        cell.detailTextLabel?.text = "@" + comment.commentedBy + " " + dateString
+        return cell
+    }
+    
+    
 }
