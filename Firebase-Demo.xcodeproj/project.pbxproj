@@ -26,6 +26,7 @@
 		0F68AC70240D5F9E0074B3E1 /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC6F240D5F9E0074B3E1 /* UIViewController+Navigation.swift */; };
 		0F68AC72240D5FE80074B3E1 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F68AC71240D5FE80074B3E1 /* UIViewController+Alerts.swift */; };
 		0F6D252E24196A6100949247 /* ItemDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6D252D24196A6100949247 /* ItemDetailController.swift */; };
+		0F6D2530241973A200949247 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6D252F241973A200949247 /* HeaderView.swift */; };
 		57845ACD24092D4300F35651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57845ACC24092D4300F35651 /* AppDelegate.swift */; };
 		57845ACF24092D4300F35651 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57845ACE24092D4300F35651 /* SceneDelegate.swift */; };
 		57845AD124092D4300F35651 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57845AD024092D4300F35651 /* LoginViewController.swift */; };
@@ -69,6 +70,7 @@
 		0F68AC6F240D5F9E0074B3E1 /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
 		0F68AC71240D5FE80074B3E1 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		0F6D252D24196A6100949247 /* ItemDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailController.swift; sourceTree = "<group>"; };
+		0F6D252F241973A200949247 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		17662523252D6EC19305D366 /* Pods_Firebase_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7BDC2C5150E7E031D3BA38 /* Pods-Firebase-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase-Demo.release.xcconfig"; path = "Target Support Files/Pods-Firebase-Demo/Pods-Firebase-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		57845AC924092D4300F35651 /* Firebase-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +211,7 @@
 				0F364AEE240D757900F15393 /* CategoryCell.swift */,
 				0F59881E240FFDF7004D5761 /* ItemCell.xib */,
 				0F598820240FFE1A004D5761 /* ItemCell.swift */,
+				0F6D252F241973A200949247 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,12 +222,12 @@
 				57845AD024092D4300F35651 /* LoginViewController.swift */,
 				0F68AC65240D5F130074B3E1 /* MainTabBarController.swift */,
 				0F68AC67240D5F3D0074B3E1 /* ItemFeedViewController.swift */,
+				0F6D252D24196A6100949247 /* ItemDetailController.swift */,
 				0F68AC69240D5F4F0074B3E1 /* SellItemViewController.swift */,
 				0F68AC6B240D5F640074B3E1 /* ProfileViewController.swift */,
 				0F68AC6D240D5F740074B3E1 /* CreateItemViewController.swift */,
 				0F68AC6F240D5F9E0074B3E1 /* UIViewController+Navigation.swift */,
 				0F68AC71240D5FE80074B3E1 /* UIViewController+Alerts.swift */,
-				0F6D252D24196A6100949247 /* ItemDetailController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				0F68AC68240D5F3D0074B3E1 /* ItemFeedViewController.swift in Sources */,
 				0F59882624100DDE004D5761 /* StorageService.swift in Sources */,
 				0F364AEF240D757900F15393 /* CategoryCell.swift in Sources */,
+				0F6D2530241973A200949247 /* HeaderView.swift in Sources */,
 				0F68AC6C240D5F640074B3E1 /* ProfileViewController.swift in Sources */,
 				57845ACD24092D4300F35651 /* AppDelegate.swift in Sources */,
 				57845AF124092DBB00F35651 /* GradientView.swift in Sources */,
