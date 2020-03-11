@@ -69,11 +69,24 @@ class ItemDetailController: UIViewController {
         guard let keyboardFrame = notification.userInfo?["UIKeyboardBoundsUserInfoKey"] as? CGRect else {
             return
         }
+        
+        //adjust the container bottom constraint
+        containerBottomConstraint.constant = -(keyboardFrame.height - view.safeAreaInsets.bottom)
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
-           
+           dismissKeyboard()
        }
     
+    @objc private func dismissKeyboard() {
+        containerBottomConstraint.constant = originalValueForConstraint
+        commentTextField.resignFirstResponder()
+    }
+}
 
+extension ItemDetailController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
+    }
 }
