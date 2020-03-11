@@ -18,6 +18,8 @@ class ItemDetailController: UIViewController {
     
     private var item: Item
     
+    private var originalValueForConstraint: CGFloat = 0
+    
     init?(coder: NSCoder, item: Item) {
         self.item = item
         super.init(coder: coder)
@@ -32,13 +34,46 @@ class ItemDetailController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = item.itemName
         
-        //tableView.tableHeaderView = UIView()
+        tableView.tableHeaderView = HeaderView(imageURL: item.imageURL)
+        originalValueForConstraint = containerBottomConstraint.constant
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        registerKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        unregisterKeyboardNotifications()
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
     }
     
+    
+    //Keyboard handling
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unregisterKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        print(notification.userInfo) // this is below UIKeyboardBoundUserInfoKey comes from here
+        guard let keyboardFrame = notification.userInfo?["UIKeyboardBoundsUserInfoKey"] as? CGRect else {
+            return
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+           
+       }
     
 
 }
