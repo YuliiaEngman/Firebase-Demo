@@ -103,13 +103,19 @@ class DatabaseService {
     }
     
     public func postComment(item: Item, comment: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        guard let user = Auth.auth().currentUser else { return }
+        guard let user = Auth.auth().currentUser, let displayName = user.displayName else { return }
         //creating empty document I want to write
+        //getting a document
         let docRef = db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document()
        
         //actually writing to this document
-        db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document(docRef.documentID).setData(["":""]) { (error) in
-            
+        //using document from above to write (to firebase) -> to its contents to firebase
+        db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document(docRef.documentID).setData(["text":comment, "commentDate":Timestamp(date: Date()), "itemName": item.itemName, "itemId": item.itemId, "sellerName": item.sellerName, "commentedBy":displayName]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
     }
 }

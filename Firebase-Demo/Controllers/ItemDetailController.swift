@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ItemDetailController: UIViewController {
     
@@ -19,11 +20,15 @@ class ItemDetailController: UIViewController {
     private var item: Item
     private var originalValueForConstraint: CGFloat = 0
     
+    private var databaseService = DatabaseService()
+    
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(dismissKeyboard))
         return gesture
     }()
+    
+    private var listener: ListenerRegistration?
     
     init?(coder: NSCoder, item: Item) {
         self.item = item
@@ -50,6 +55,17 @@ class ItemDetailController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         registerKeyboardNotifications()
+        
+        listener = Firestore.firestore().collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).addSnapshotListener({ [weak self] (snapshot, error) in
+            
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Try again", message: error.localizedDescription)
+                }
+            } else if let snapshot = snapshot {
+                
+            }
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,6 +85,22 @@ class ItemDetailController: UIViewController {
         }
         
         // post to firebase
+        postComment(text: commentText)
+    }
+    
+    private func postComment(text: String) {
+        databaseService.postComment(item: item, comment: text) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Try again", message: error.localizedDescription)
+                }
+            case .success:
+               DispatchQueue.main.async {
+                    self?.showAlert(title: "Comment posted", message: nil)
+                }
+            }
+        }
     }
     
     
