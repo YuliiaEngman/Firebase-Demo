@@ -17,8 +17,13 @@ class ItemDetailController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     
     private var item: Item
-    
     private var originalValueForConstraint: CGFloat = 0
+    
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(dismissKeyboard))
+        return gesture
+    }()
     
     init?(coder: NSCoder, item: Item) {
         self.item = item
@@ -36,6 +41,10 @@ class ItemDetailController: UIViewController {
         
         tableView.tableHeaderView = HeaderView(imageURL: item.imageURL)
         originalValueForConstraint = containerBottomConstraint.constant
+        
+        commentTextField.delegate = self
+        
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,7 +58,17 @@ class ItemDetailController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
+        dismissKeyboard()
         
+        //TODO: add comment to the comments collection on this item
+        // getting comment ready to post to firebase
+        guard let commentText = commentTextField.text,
+            !commentText.isEmpty else {
+                showAlert(title: "Missing Fields", message: "A comment is requred")
+                return
+        }
+        
+        // post to firebase
     }
     
     

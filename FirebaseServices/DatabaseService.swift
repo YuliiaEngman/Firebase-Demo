@@ -93,15 +93,23 @@ class DatabaseService {
     }
     
     public func delete(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
-        
-        
-        
         db.collection(DatabaseService.itemsCollection).document(item.itemId).delete { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(true))
             }
+        }
+    }
+    
+    public func postComment(item: Item, comment: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        //creating empty document I want to write
+        let docRef = db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document()
+       
+        //actually writing to this document
+        db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document(docRef.documentID).setData(["":""]) { (error) in
+            
         }
     }
 }
