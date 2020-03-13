@@ -14,10 +14,10 @@ class ProfileViewController: UIViewController {
     
     
     @IBOutlet weak var profileImageView: DesignableImageView!
-    
     @IBOutlet weak var displayNameTextField: UITextField!
-    
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     private lazy var imagePickerController: UIImagePickerController = {
         let ip = UIImagePickerController()
@@ -156,6 +156,9 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
+        
+    }
     
 }
 
