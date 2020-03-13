@@ -96,7 +96,7 @@ extension ItemFeedViewController: UITableViewDataSource {
         let item = items[indexPath.row]
         guard let user = Auth.auth().currentUser else { return false }
         
-        if item.sellerID != user.uid {
+        if item.sellerId != user.uid {
             return false // cannot swipe on row to delete
         }
         return true // able to swipe to delete item

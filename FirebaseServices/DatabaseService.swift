@@ -15,6 +15,7 @@ class DatabaseService {
     static let itemsCollection = "items" // to access static let we use class name + let itself
     static let userCollection = "users"
     static let commentsCollection = "comments" //sub-collection on an item document
+    static let favoritsCollection = "favorites" //sub-collection on a user document
     
     // review - firebase firestore hierarchy works like this
     // top level
@@ -46,11 +47,11 @@ class DatabaseService {
         //            let itemId: String
         //            let listedDate: Date -> current date represnted as Date()
         //            let sellerName: String
-        //           let sellerID: String -> user.uid (uid - is unique number that assigned to the user who just created their account).
+        //           let sellerId: String -> user.uid (uid - is unique number that assigned to the user who just created their account).
         //            let categoryName: String
         //        }
         
-        db.collection(DatabaseService.itemsCollection).document(documentRef.documentID).setData(["itemName":itemName, "price":price, "itemID":documentRef.documentID, "listedDate":Timestamp(date: Date()), "sellerName":displayName, "sellerID":user.uid, "categoryName":category.name]) {
+        db.collection(DatabaseService.itemsCollection).document(documentRef.documentID).setData(["itemName":itemName, "price":price, "itemID":documentRef.documentID, "listedDate":Timestamp(date: Date()), "sellerName":displayName, "sellerId":user.uid, "categoryName":category.name]) {
             (error) in
             if let error = error {
                 // print("error creating item: \(error)")
@@ -121,4 +122,12 @@ class DatabaseService {
             }
         }
     }
+    
+    public func addToFavorits(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritsCollection).document(item.itemId).setData(["itemName": item.itemName, "price" : item.price, "imageURL": item.imageURL, "favoritedDate" : Timestamp(date: Date()), "itemId": item.itemId, "sellerName": item.sellerName, "sellerId": item.sellerId]) { (error) in
+            
+        }
+        }
 }

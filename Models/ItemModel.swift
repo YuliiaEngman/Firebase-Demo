@@ -14,7 +14,7 @@ struct Item {
     let itemId: String
     let listedDate: Date
     let sellerName: String
-    let sellerID: String // it will be our ID
+    let sellerId: String // it will be our ID
     let categoryName: String
     let imageURL: String
 }
@@ -26,7 +26,7 @@ extension Item {
         self.itemId = dictionary["itemID"] as? String ?? "no item id"
         self.listedDate = dictionary["listedDate"] as? Date ?? Date()
         self.sellerName = dictionary["sellerName"] as? String ?? "no seller name"
-        self.sellerID = dictionary["sellerID"] as? String ?? "no sellet id"
+        self.sellerId = dictionary["sellerId"] as? String ?? "no sellet id"
         self.categoryName = dictionary["categoryName"] as? String ?? "no category name"
         self.imageURL = dictionary["imageURL"] as? String ?? "no image url"
     }
