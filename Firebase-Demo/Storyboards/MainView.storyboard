@@ -71,7 +71,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mc4-fA-iRS"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sell Item" id="MFf-Yh-QTc"/>
+                    <tabBarItem key="tabBarItem" title="Sell Item" image="dollarsign.circle" catalog="system" id="MFf-Yh-QTc"/>
                     <connections>
                         <outlet property="collectionView" destination="i0t-G4-a9F" id="rFP-Tc-74U"/>
                     </connections>
@@ -433,7 +433,7 @@
         <scene sceneID="wld-88-s0V">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Imy-vC-Fri" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item Feed" id="Bmd-Jx-UbL"/>
+                    <tabBarItem key="tabBarItem" title="Item Feed" image="tag" catalog="system" id="Bmd-Jx-UbL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ad5-ia-iWz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -450,11 +450,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dollarsign.circle" catalog="system" width="64" height="60"/>
         <image name="guitars" catalog="system" width="64" height="52"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="pencil.circle.fill" catalog="system" width="64" height="60"/>
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="photo" catalog="system" width="64" height="46"/>
+        <image name="tag" catalog="system" width="64" height="58"/>
     </resources>
 </document>

@@ -69,9 +69,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         displayNameTextField.delegate = self
-        
         updateUI()
+            //register cell
+        tableView.register(UINib(nibName: "ItemCell", bundle: nil), forCellReuseIdentifier: "itemCell")
         tableView.dataSource = self
+        tableView.delegate = self
+        fetchItems()
     }
     
     private func fetchItems() {
@@ -257,4 +260,10 @@ extension ProfileViewController: UITableViewDataSource {
         }
         return cell
       }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
 }
