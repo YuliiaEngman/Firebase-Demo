@@ -156,6 +156,20 @@ class ItemDetailController: UIViewController {
     }
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        
+        
+        databaseService.addToFavorits(item: item) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Favoriting error", message: error.localizedDescription)
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Item favorited", message: nil)
+                }
+            }
+        }
     }
     
 }
