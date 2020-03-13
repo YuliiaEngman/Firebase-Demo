@@ -168,7 +168,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7k-nh-iUz">
-                                <rect key="frame" x="158" y="433" width="98" height="30"/>
+                                <rect key="frame" x="20" y="119" width="98" height="30"/>
                                 <state key="normal" title="Update Profile"/>
                                 <connections>
                                     <action selector="updateProfileButtonPressed:" destination="XRY-9H-wga" eventType="touchUpInside" id="TGU-p7-q4O"/>
@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-z6-Qbu">
-                                <rect key="frame" x="177" y="493" width="60" height="30"/>
+                                <rect key="frame" x="334" y="119" width="60" height="30"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="signOutButtonPressed:" destination="XRY-9H-wga" eventType="touchUpInside" id="BHf-18-22r"/>
@@ -196,16 +196,16 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="y7k-nh-iUz" firstAttribute="leading" secondItem="e0o-Do-MOd" secondAttribute="leading" constant="20" id="5TH-So-Gpo"/>
                             <constraint firstItem="M0u-4r-Eyb" firstAttribute="leading" secondItem="e0o-Do-MOd" secondAttribute="leading" constant="20" id="7e8-Cd-DCR"/>
                             <constraint firstItem="Arf-bq-6Q2" firstAttribute="centerY" secondItem="ceB-iF-4qk" secondAttribute="centerY" id="Ajd-6W-7VC"/>
                             <constraint firstItem="rIC-YE-FcZ" firstAttribute="top" secondItem="ceB-iF-4qk" secondAttribute="bottom" constant="20" id="SNF-b6-zBo"/>
                             <constraint firstItem="M0u-4r-Eyb" firstAttribute="top" secondItem="rIC-YE-FcZ" secondAttribute="bottom" constant="20" id="TBY-uk-YBn"/>
                             <constraint firstItem="e0o-Do-MOd" firstAttribute="trailing" secondItem="rIC-YE-FcZ" secondAttribute="trailing" constant="20" id="V02-Ee-6qe"/>
-                            <constraint firstItem="jOa-z6-Qbu" firstAttribute="top" secondItem="y7k-nh-iUz" secondAttribute="bottom" constant="30" id="YeN-Om-lzJ"/>
                             <constraint firstItem="rIC-YE-FcZ" firstAttribute="leading" secondItem="e0o-Do-MOd" secondAttribute="leading" constant="20" id="ewF-75-cvf"/>
-                            <constraint firstItem="y7k-nh-iUz" firstAttribute="centerX" secondItem="Kad-hD-IGU" secondAttribute="centerX" id="lIB-wc-3KA"/>
-                            <constraint firstItem="jOa-z6-Qbu" firstAttribute="centerX" secondItem="Kad-hD-IGU" secondAttribute="centerX" id="nNy-5V-JLg"/>
-                            <constraint firstItem="y7k-nh-iUz" firstAttribute="centerY" secondItem="Kad-hD-IGU" secondAttribute="centerY" id="tn4-Ss-JrD"/>
+                            <constraint firstItem="jOa-z6-Qbu" firstAttribute="centerY" secondItem="Arf-bq-6Q2" secondAttribute="centerY" id="kU1-zz-TJh"/>
+                            <constraint firstItem="e0o-Do-MOd" firstAttribute="trailing" secondItem="jOa-z6-Qbu" secondAttribute="trailing" constant="20" id="ojo-SC-D6Q"/>
+                            <constraint firstItem="y7k-nh-iUz" firstAttribute="centerY" secondItem="ceB-iF-4qk" secondAttribute="centerY" id="sEX-9O-5yn"/>
                             <constraint firstItem="ceB-iF-4qk" firstAttribute="centerX" secondItem="Kad-hD-IGU" secondAttribute="centerX" id="vhx-rH-I10"/>
                             <constraint firstItem="ceB-iF-4qk" firstAttribute="top" secondItem="e0o-Do-MOd" secondAttribute="top" constant="40" id="vqv-Rx-WfT"/>
                             <constraint firstItem="Arf-bq-6Q2" firstAttribute="leading" secondItem="ceB-iF-4qk" secondAttribute="trailing" constant="8" id="yHB-hT-iTk"/>
