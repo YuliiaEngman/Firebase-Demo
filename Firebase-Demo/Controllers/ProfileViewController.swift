@@ -10,6 +10,11 @@ import UIKit
 import FirebaseAuth
 import Kingfisher
 
+enum ViewState {
+    case myItems
+    case favorites
+}
+
 class ProfileViewController: UIViewController {
     
     
@@ -34,6 +39,31 @@ class ProfileViewController: UIViewController {
     private let storageservice = StorageService()
     private let databaseService = DatabaseService()
     
+    private var viewState: ViewState = .myItems {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    // favorits
+    //TODO: create Favorite model
+    private var favorits = [String]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // my items data
+    private var myItems = [Item]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +71,7 @@ class ProfileViewController: UIViewController {
         displayNameTextField.delegate = self
         
         updateUI()
+        tableView.dataSource = self
     }
     
     private func updateUI() {
@@ -158,6 +189,15 @@ class ProfileViewController: UIViewController {
     
     @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
         
+        //toggle current viewState
+        switch sender.selectedSegmentIndex {
+        case 0:
+            viewState = .myItems
+        case 1:
+            viewState = .favorites
+        default:
+            break
+        }
     }
     
 }
@@ -177,5 +217,29 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         selectedImage = image
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension ProfileViewController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewState == .myItems {
+            return myItems.count
+        } else {
+            return favorits.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemCell else {
+            fatalError("could not downcast to ItemCell")
+        }
+        if viewState == .myItems {
+            let item = myItems[indexPath.row]
+            cell.configureCell(for: item)
+        } else {
+            let favorite = favorits[indexPath.row]
+            //cell.configureCell(for: favorite)
+        }
+        return cell
+      }
 }
