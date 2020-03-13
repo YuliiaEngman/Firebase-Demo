@@ -154,6 +154,10 @@ class ItemDetailController: UIViewController {
         containerBottomConstraint.constant = originalValueForConstraint
         commentTextField.resignFirstResponder()
     }
+    
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+    }
+    
 }
 
 extension ItemDetailController: UITextFieldDelegate {
