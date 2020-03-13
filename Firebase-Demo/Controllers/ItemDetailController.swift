@@ -44,6 +44,16 @@ class ItemDetailController: UIViewController {
         return formatter
     }()
     
+    private var isFavorite = false {
+        didSet {
+            if isFavorite {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+            } else {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            }
+        }
+    }
+    
     init?(coder: NSCoder, item: Item) {
         self.item = item
         super.init(coder: coder)
@@ -66,6 +76,9 @@ class ItemDetailController: UIViewController {
         view.addGestureRecognizer(tapGesture)
         
         tableView.dataSource = self
+        
+        //TODO: refactor code (helper fucntions) in viewDidLoad, we should always strive for less code in our viewDidLoad
+        updateUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +93,7 @@ class ItemDetailController: UIViewController {
                 }
             } else if let snapshot = snapshot {
                 //create comments using dictionary initialixer from the Comment model
-//                self?.comments = snapshot.documents.map { Comment($0.data())}
+                //                self?.comments = snapshot.documents.map { Comment($0.data())}
                 let comments = snapshot.documents.map { Comment($0.data())}
                 //sort by date
                 self?.comments = comments.sorted {$0.commentDate.dateValue() > $1.commentDate.dateValue()}
@@ -92,6 +105,24 @@ class ItemDetailController: UIViewController {
         super.viewWillDisappear(true)
         unregisterKeyboardNotifications()
         listener?.remove()
+    }
+    
+    private func updateUI() {
+        //check if item is a favorite and update heart icon accordingly
+        databaseService.isItemInFavorites(item: item) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Try again", message: error.localizedDescription)
+                }
+            case .success(let success):
+                if success { // meaning true
+                    self?.isFavorite = true
+                } else {
+                    self?.isFavorite = false
+                }
+            }
+        }
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
@@ -117,7 +148,7 @@ class ItemDetailController: UIViewController {
                     self?.showAlert(title: "Try again", message: error.localizedDescription)
                 }
             case .success:
-               DispatchQueue.main.async {
+                DispatchQueue.main.async {
                     self?.showAlert(title: "Comment posted", message: nil)
                 }
             }
@@ -147,8 +178,8 @@ class ItemDetailController: UIViewController {
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) {
-           dismissKeyboard()
-       }
+        dismissKeyboard()
+    }
     
     @objc private func dismissKeyboard() {
         containerBottomConstraint.constant = originalValueForConstraint
@@ -157,21 +188,37 @@ class ItemDetailController: UIViewController {
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         
-        
-        databaseService.addToFavorits(item: item) { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self?.showAlert(title: "Favoriting error", message: error.localizedDescription)
+        if isFavorite { //remove from favorite
+            databaseService.removeFromFavorites(item: item){ [weak self]
+                (result) in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Failed to remove favorite", message: error.localizedDescription)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Item removed", message: nil)
+                        self?.isFavorite = false
+                    }
                 }
-            case .success:
-                DispatchQueue.main.async {
-                    self?.showAlert(title: "Item favorited", message: nil)
+            }
+        } else { // add to favorites
+            databaseService.addToFavorits(item: item) { [weak self] (result) in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Favoriting error", message: error.localizedDescription)
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Item favorited", message: nil)
+                        self?.isFavorite = true
+                    }
                 }
             }
         }
     }
-    
 }
 
 extension ItemDetailController: UITextFieldDelegate {
