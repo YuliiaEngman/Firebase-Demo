@@ -145,4 +145,27 @@ class DatabaseService {
             }
         }
     }
+    
+    public func isItemInFavorites(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        // in Firebase we use the "where" keyboard to query (search) a collection
+        
+        // getDocumet - gets (fetches) documents 1 time (ONLY ONCE)
+        // addListener - any time there is a change I get an update on it (addSnapshotListener)
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritsCollection).whereField("itemId", isEqualTo: item.itemId).getDocuments {
+            (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let count = snapshot.documents.count // check if we have documents
+                if count > 0 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
+        }
+    }
 }
+
