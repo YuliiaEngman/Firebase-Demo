@@ -71,8 +71,8 @@ class DatabaseService {
         
         //in below code we could add a display name if we created that
         db.collection(DatabaseService.userCollection).document(authDataResult.user.uid).setData(["email" : email,
-                                                                                                  "createdDate" : Timestamp(date: Date()),
-                                                                                                  "userID": authDataResult.user.uid]) { (error) in
+                                                                                                 "createdDate" : Timestamp(date: Date()),
+                                                                                                 "userID": authDataResult.user.uid]) { (error) in
                                                                                                     
                                                                                                     if let error = error {
                                                                                                         completion(.failure(error))
@@ -111,7 +111,7 @@ class DatabaseService {
         //creating empty document I want to write
         //getting a document
         let docRef = db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document()
-       
+        
         //actually writing to this document
         //using document from above to write (to firebase) -> to its contents to firebase
         db.collection(DatabaseService.itemsCollection).document(item.itemId).collection(DatabaseService.commentsCollection).document(docRef.documentID).setData(["text":comment, "commentDate":Timestamp(date: Date()), "itemName": item.itemName, "itemId": item.itemId, "sellerName": item.sellerName, "commentedBy":displayName]) { (error) in
@@ -125,9 +125,24 @@ class DatabaseService {
     
     public func addToFavorits(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
-        
         db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritsCollection).document(item.itemId).setData(["itemName": item.itemName, "price" : item.price, "imageURL": item.imageURL, "favoritedDate" : Timestamp(date: Date()), "itemId": item.itemId, "sellerName": item.sellerName, "sellerId": item.sellerId]) { (error) in
             
+            if let error = error  {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
+    }
+    
+    public func removeFromFavorites(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritsCollection).document(item.itemId).delete {(error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
+    }
 }
