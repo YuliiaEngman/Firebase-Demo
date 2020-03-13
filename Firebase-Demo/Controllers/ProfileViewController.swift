@@ -74,6 +74,21 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    private func fetchItems() {
+        // we need the current user id
+        guard let user = Auth.auth().currentUser else { return }
+        databaseService.fetchUserItems(userId: user.uid) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Fetching error", message: error.localizedDescription)
+                }
+            case .success(let items):
+                self?.myItems = items
+            }
+        }
+    }
+    
     private func updateUI() {
         guard let user = Auth.auth().currentUser else {
             return
