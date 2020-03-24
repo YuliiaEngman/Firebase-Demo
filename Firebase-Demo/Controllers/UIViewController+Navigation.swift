@@ -24,5 +24,4 @@ extension UIViewController {
         let newVC = storyboard.instantiateViewController(withIdentifier: viewControllerId)
         resetWindow(with: newVC)
     }
-    
 }

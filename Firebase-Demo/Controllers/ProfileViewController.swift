@@ -46,8 +46,8 @@ class ProfileViewController: UIViewController {
     }
     
     // favorits
-    //TODO: create Favorite model
-    private var favorits = [String]() {
+    //TODO: create Favorite model - Done
+    private var favorits = [Favorite]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -64,6 +64,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    private var refreshControl: UIRefreshControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +76,25 @@ class ProfileViewController: UIViewController {
         tableView.register(UINib(nibName: "ItemCell", bundle: nil), forCellReuseIdentifier: "itemCell")
         tableView.dataSource = self
         tableView.delegate = self
-        fetchItems()
+        
+        loadData()
+        
+        refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
     }
     
-    private func fetchItems() {
+    @objc private func loadData() {
+        fetchItems()
+        fetchFavorits()
+    }
+    
+   @objc private func fetchItems() {
         // we need the current user id
-        guard let user = Auth.auth().currentUser else { return }
+        guard let user = Auth.auth().currentUser else {
+            refreshControl.endRefreshing()
+            return
+    }
         databaseService.fetchUserItems(userId: user.uid) { [weak self] (result) in
             switch result {
             case .failure(let error):
@@ -88,6 +103,30 @@ class ProfileViewController: UIViewController {
                 }
             case .success(let items):
                 self?.myItems = items
+                dump(self?.myItems)
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    private func fetchFavorits(){
+        databaseService.fetchFavorites { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Failed fetching favorits", message: error.localizedDescription)
+                }
+            case .success(let favorits):
+                self?.favorits = favorits
+                //dump(self?.myItems)
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
             }
         }
     }
@@ -256,7 +295,7 @@ extension ProfileViewController: UITableViewDataSource {
             cell.configureCell(for: item)
         } else {
             let favorite = favorits[indexPath.row]
-            //cell.configureCell(for: favorite)
+            cell.configureCell(for: favorite)
         }
         return cell
       }

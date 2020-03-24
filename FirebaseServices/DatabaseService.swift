@@ -12,6 +12,10 @@ import FirebaseAuth
 
 class DatabaseService {
     
+    // 2 ways to fetch items:
+// Authomatic refresh 1 - via add snapshotlictener as in ItemFeedViewController (  listener = Firestore.firestore().collection(DatabaseService.itemsCollection).addSnapshotListener({...)
+    // Set manually 2 - getDocuments or getDocument (inside this file)
+    
     static let itemsCollection = "items" // to access static let we use class name + let itself
     static let userCollection = "users"
     static let commentsCollection = "comments" //sub-collection on an item document
@@ -179,6 +183,26 @@ class DatabaseService {
                 completion(.success(items))
             }
             
+        }
+    }
+    
+    
+    //we could take and userId and takes all his collection - but for not we are doing it differently
+    public func fetchFavorites(completion: @escaping (Result<[Favorite], Error>) -> ()) {
+        // access the usersCollection -> userid (document) -> favorits collection
+        guard let user = Auth.auth().currentUser else  { return }
+       
+        //always start with collection (not document(s))
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritsCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                // we cannot use map here because there is a posibility that one of our object is nil
+                // but we can use compact map even if the object could be nill - removes nill values from an array (ex. [4, nil, 12, -9, nil] -> [4, 12, -9])
+                // our failable initializer returns us optional: init?() => Favorite?
+                let favorits = snapshot.documents.compactMap { Favorite($0.data()) }
+                completion(.success(favorits))
+            }
         }
     }
 }
